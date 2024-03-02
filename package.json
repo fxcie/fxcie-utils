@@ -1,0 +1,33 @@
+{
+  "name": "fxcie-utils",
+  "version": "0.0.4",
+  "description": "Francis Carelse's Utilities",
+  "main": "lib/index.js",
+  "files": [
+    "lib/*",
+    "node/*"
+  ],
+  "scripts": {
+    "build": "bash -c \"npx tsc src/*.ts --outDir lib --target es6 --declaration\"",
+    "postbuild": "bash -c \"npx tsc src/*.ts --outDir node\"",
+    "test": "npx jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fxcie/fxcie-utils.git"
+  },
+  "keywords": [
+    "FXC",
+    "fxcie",
+    "Utilities"
+  ],
+  "author": "Francis Carelse",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/fxcie/fxcie-utils/issues"
+  },
+  "homepage": "https://github.com/fxcie/fxcie-utils#readme",
+  "devDependencies": {
+    "fxcie-utils": "^0.0.2"
+  }
+}

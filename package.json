@@ -10,6 +10,7 @@
   "scripts": {
     "build": "bash -c \"npx tsc src/*.ts --outDir lib --target es6 --declaration\"",
     "postbuild": "bash -c \"npx tsc src/*.ts --outDir node\"",
+    "prepublish": "npm run build",
     "test": "npx jest"
   },
   "repository": {

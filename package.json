@@ -4,14 +4,14 @@
   "description": "Francis Carelse's Utilities",
   "main": "lib/index.js",
   "files": [
-    "lib/*",
-    "node/*"
+    "lib/*"
   ],
   "scripts": {
-    "build": "bash -c \"npx tsc src/*.ts --outDir lib --target es6 --declaration\"",
-    "postbuild": "bash -c \"npx tsc src/*.ts --outDir node\"",
-    "prepublish": "npm run build",
-    "test": "npx jest"
+    "build": "bash -c \"npx tsc src/*.ts --outDir lib --declaration\"",
+    "postbuild": "bash -c \"npx tsc src/*.ts --outDir lib/mjs --target es6 --declaration\"",
+    "pretest": "npm run build",
+    "test": "npx jest",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,6 @@
   },
   "homepage": "https://github.com/fxcie/fxcie-utils#readme",
   "devDependencies": {
-    "fxcie-utils": "^0.0.2"
+    "typescript": "^5.4.2"
   }
 }

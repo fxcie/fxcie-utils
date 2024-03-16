@@ -1,4 +1,4 @@
-const utils = require('../../lib');
+const utils = require('../lib');
 
 test('has isString function', () => {
 	expect(utils.isString instanceof Function).toBe(true);

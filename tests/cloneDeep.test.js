@@ -1,4 +1,4 @@
-const utils = require('../../lib')
+const utils = require('../lib')
 
 test('has cloneDeep function', () => {
 	expect(utils.cloneDeep instanceof Function).toBe(true);

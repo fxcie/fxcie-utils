@@ -7,8 +7,8 @@
     "lib/*"
   ],
   "scripts": {
-    "build": "bash -c \"npx tsc src/*.ts --outDir lib --declaration\"",
-    "postbuild": "bash -c \"npx tsc src/*.ts --outDir lib/mjs --target es6 --declaration\"",
+    "build": "bash -c \"npx tsc src/*.ts --outDir lib --lib es2017 --declaration\"",
+    "postbuild": "bash -c \"npx tsc src/*.ts --outDir lib/mjs --target es2017 --declaration\"",
     "pretest": "npm run build",
     "test": "npx jest",
     "prepublish": "npm run build"

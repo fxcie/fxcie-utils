@@ -12,3 +12,24 @@ export const merged = function () {
 		[]
 	);
 };
+
+export const cloneDeep = function (obj: any) {
+	const values = new Set();
+	if (obj == null) return null;
+	return _cloneDeep(obj);
+
+	function _cloneDeep(obj) {
+		if (!isObject(obj)) return obj;
+		if (isString(obj)) return obj.toString();
+		if (isArray(obj)) return obj.map(_cloneDeep);
+		return Object.entries(obj).reduce((all, [key, value]) => {
+			if (isObject(value)) {
+				if (values.has(value)) throw new Error("Cyclic object cloning");
+				values.add(value);
+				value = _cloneDeep(value);
+			}
+			all[key] = value;
+			return all;
+		}, {});
+	}
+};

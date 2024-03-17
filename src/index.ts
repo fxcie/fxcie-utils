@@ -20,7 +20,7 @@ export const cloneDeep = function (obj: any) {
 
 	function _cloneDeep(obj) {
 		if (!isObject(obj)) return obj;
-		if (isString(obj)) return obj.toString();
+		if (obj instanceof String) return new String(obj.toString());
 		if (isArray(obj)) return obj.map(_cloneDeep);
 		return Object.entries(obj).reduce((all, [key, value]) => {
 			if (isObject(value)) {

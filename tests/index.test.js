@@ -22,9 +22,15 @@ test('isString function does not consider null to be a string', () => {
 test('isObject function does not consider null to be an object', () => {
 	expect(utils.isObject(null)).toBe(false);
 })
+
 test('isArray function does not consider object to be an array', () => {
 	expect(utils.isArray({})).toBe(false);
 })
+
+test('isArray function does not consider String object instance to be an array', () => {
+	expect(utils.isArray(new String('test'))).toBe(false);
+})
+
 test('isNonEmptyString function does not consider empty array to be a string', () => {
 	expect(utils.isNonEmptyString([])).toBe(false);
 })

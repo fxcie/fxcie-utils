@@ -3,17 +3,18 @@ export const isString = (str: any) =>
 export const isObject = (obj: any) =>
 	typeof obj === "object" && obj instanceof Object;
 export const isArray = (arr: any) => arr instanceof Array;
+export const isSet = (set: any) => set instanceof Set;
 export const isNonEmptyString = (str) => isString(str) || str.length !== 0;
 
-export const merged = function () {
+export function merged() {
 	const args = Array.prototype.slice.call(arguments);
 	return [...args].reduce(
 		(arr, next) => (!isArray(next) ? arr : [...arr, ...next]),
 		[]
 	);
-};
+}
 
-export const cloneDeep = function (obj: any) {
+export function cloneDeep(obj: any) {
 	const values = new Set();
 	if (obj == null) return null;
 	return _cloneDeep(obj);
@@ -32,4 +33,10 @@ export const cloneDeep = function (obj: any) {
 			return all;
 		}, {});
 	}
-};
+}
+
+export function equalSets(as1, as2) {
+	const set1 = isSet(as1) ? as1 : new Set([...as1]);
+	const set2 = isSet(as2) ? as2 : new Set([...as2]);
+	return set1.size === set2.size && [...set1].every(set2.has);
+}

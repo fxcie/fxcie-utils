@@ -36,6 +36,7 @@ export function cloneDeep(obj: any) {
 }
 
 export function equalSets(as1, as2) {
+	if (!as1[Symbol.iterator] || !as2[Symbol.iterator]) return false;
 	const set1 = isSet(as1) ? as1 : new Set([...as1]);
 	const set2 = isSet(as2) ? as2 : new Set([...as2]);
 	return set1.size === set2.size && [...set1].every(set2.has);

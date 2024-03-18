@@ -14,8 +14,13 @@ export function merged() {
 	);
 }
 
+export function unique(arr) {
+	if (!isArray(arr)) throw new TypeError("Arrays only");
+	return arr.filter((element, index) => arr.indexOf(element) == index);
+}
+
 export function cloneDeep(obj: any) {
-	const values = new Set();
+	const values: any[] = [];
 	if (obj == null) return null;
 	return _cloneDeep(obj);
 
@@ -25,8 +30,8 @@ export function cloneDeep(obj: any) {
 		if (isArray(obj)) return obj.map(_cloneDeep);
 		return Object.entries(obj).reduce((all, [key, value]) => {
 			if (isObject(value)) {
-				if (values.has(value)) throw new Error("Cyclic object cloning");
-				values.add(value);
+				if (values.includes(value)) throw new Error("Cyclic object cloning");
+				values.push(value);
 				value = _cloneDeep(value);
 			}
 			all[key] = value;
@@ -36,8 +41,9 @@ export function cloneDeep(obj: any) {
 }
 
 export function equalSets(as1, as2) {
+	if (!isObject(as1) || !isObject(as2)) return false;
 	if (!as1[Symbol.iterator] || !as2[Symbol.iterator]) return false;
-	const set1 = isSet(as1) ? as1 : new Set([...as1]);
-	const set2 = isSet(as2) ? as2 : new Set([...as2]);
-	return set1.size === set2.size && [...set1].every(set2.has);
+	const set1 = unique([...as1]);
+	const set2 = unique([...as2]);
+	return set1.length === set2.length && set1.every((el) => set2.includes(el));
 }

@@ -1,6 +1,6 @@
 {
   "name": "@fxcie/utils",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Francis Carelse's Utilities",
   "main": "lib/index.js",
   "files": [
@@ -10,7 +10,7 @@
     "build": "bash -c \"npx tsc src/*.ts --outDir lib --lib es2017 --declaration\"",
     "postbuild": "bash -c \"npx tsc src/*.ts --outDir lib/mjs --target es2017 --declaration\"",
     "pretest": "npm run build",
-    "test": "npx jest",
+    "test": "npx jest --verbose false --silent false",
     "prepublish": "npm run build"
   },
   "repository": {

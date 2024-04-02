@@ -4,7 +4,7 @@ export const isObject = (obj: any) =>
 	typeof obj === "object" && obj instanceof Object;
 export const isArray = (arr: any) => arr instanceof Array;
 export const isSet = (set: any) => set instanceof Set;
-export const isNonEmptyString = (str) => isString(str) || str.length !== 0;
+export const isNonEmptyString = (str) => isString(str) && str.length !== 0;
 
 export function merged() {
 	const args = Array.prototype.slice.call(arguments);

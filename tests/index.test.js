@@ -47,6 +47,10 @@ test('isSet function does not consider String object instance to be an array', (
 test('isNonEmptyString function does not consider empty array to be a string', () => {
 	expect(utils.isNonEmptyString([])).toBe(false);
 })
+test('isNonEmptyString function does not consider array to be a string', () => {
+	expect(utils.isNonEmptyString(['a', 'b', 'c'])).toBe(false);
+})
+
 
 test('merged returns different array object even if only single array passed to it', () => {
 	const testArray = ['Sample'];

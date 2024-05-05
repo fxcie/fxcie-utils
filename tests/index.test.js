@@ -57,3 +57,8 @@ test('merged returns different array object even if only single array passed to 
 	expect(utils.merged(testArray) === testArray).toBe(false);
 })
 
+test('findRecord return falsy value if not found', () => {
+	expect(!!utils.findRecord([], 'field', 'value')).toBe(false);
+})
+
+

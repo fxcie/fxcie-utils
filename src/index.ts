@@ -1,5 +1,7 @@
-export const isString = (str: any) =>
+export const isString = (str: any): str is string =>
 	typeof str === "string" || str instanceof String;
+export const isNumber = (num: any): num is number =>
+	(typeof num === "number" || num instanceof Number) && num === num;
 export const isObject = (obj: any) =>
 	typeof obj === "object" && obj instanceof Object;
 export const isArray = (arr: any) => arr instanceof Array;
@@ -8,8 +10,8 @@ export const isNonEmptyString = (str) => isString(str) && str.length !== 0;
 
 export function merged() {
 	const args = Array.prototype.slice.call(arguments);
-	return [...args].reduce(
-		(arr, next) => (!isArray(next) ? arr : [...arr, ...next]),
+	return args.reduce(
+		(arr, next) => (!isArray(next) ? arr : arr.concat(next)),
 		[]
 	);
 }
@@ -46,4 +48,15 @@ export function equalSets(as1, as2) {
 	const set1 = unique([...as1]);
 	const set2 = unique([...as2]);
 	return set1.length === set2.length && set1.every((el) => set2.includes(el));
+}
+
+export function findRecord(arr: [], field: string, value: any) {
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i][field] == value) return arr[i];
+	}
+	return false;
+}
+
+export function escapeRegExp(str) {
+	return str.replace(/[[\]*+?{}.()^$|\\-]/g, "\\$&");
 }

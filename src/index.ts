@@ -61,7 +61,7 @@ export function escapeRegExp(str) {
 	return str.replace(/[[\]*+?{}.()^$|\\-]/g, "\\$&");
 }
 
-export function jsonToArray(jsonArray: string) {
+export function jsonToArray(jsonArray: string): any[] {
 	var s = [];
 	try {
 		s = JSON.parse(jsonArray);
@@ -71,7 +71,7 @@ export function jsonToArray(jsonArray: string) {
 	return s;
 }
 
-export function arrayToJson(array: any[]) {
+export function arrayToJson(array: any[]): string {
 	var s = "[]";
 	if (!(array instanceof Array)) return s;
 	try {
@@ -82,7 +82,7 @@ export function arrayToJson(array: any[]) {
 	return s;
 }
 
-export function jsonToObject(jsonObject: string) {
+export function jsonToObject(jsonObject: string): object {
 	var s = {};
 	try {
 		s = JSON.parse(jsonObject);
@@ -95,7 +95,7 @@ export function jsonToObject(jsonObject: string) {
 export function objectToJson(
 	object: Record<string, any>,
 	pretty: boolean = false
-) {
+): string {
 	var s = "{}";
 	if (!(object instanceof Object)) return s;
 	try {

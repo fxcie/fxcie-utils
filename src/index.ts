@@ -110,7 +110,7 @@ export function objectToJson(
 	return s;
 }
 
-export function randomString(len: number, charSet: string) {
+export function randomString(len: number = 8, charSet?: string) {
 	charSet =
 		charSet || "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 	len = len || 8;

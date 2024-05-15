@@ -57,6 +57,28 @@ export function findRecord(arr: [], field: string, value: any) {
 	return false;
 }
 
+export function removeRecords(
+	arr: any[],
+	key: string,
+	values: any,
+	anyType?: boolean
+) {
+	if (!(arr instanceof Array)) return 0;
+	var found = 0;
+	if (!(values instanceof Array)) values = [values];
+	for (var i = 0; i < arr.length; i++)
+		if (
+			(anyType && values.indexOf("" + arr[i][key]) != -1) ||
+			(anyType && values.indexOf(0 + arr[i][key]) != -1) ||
+			values.indexOf(arr[i][key]) != -1
+		) {
+			for (var j = i--; j < arr.length; j++) arr[j] = arr[j + 1];
+			arr.length--;
+			found++;
+		}
+	return found;
+}
+
 export function escapeRegExp(str) {
 	return str.replace(/[[\]*+?{}.()^$|\\-]/g, "\\$&");
 }

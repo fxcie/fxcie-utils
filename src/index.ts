@@ -2,11 +2,18 @@ export const isString = (str: any): str is string =>
 	typeof str === "string" || str instanceof String;
 export const isNumber = (num: any): num is number =>
 	(typeof num === "number" || num instanceof Number) && num === num;
-export const isObject = (obj: any): obj is object =>
-	typeof obj === "object" && obj instanceof Object;
-export const isArray = (arr: any): arr is [] => arr instanceof Array;
-export const isSet = (set: any) => set instanceof Set;
-export const isNonEmptyString = (str) => isString(str) && str.length !== 0;
+export function isObject(obj: any): obj is object {
+	return typeof obj === "object" && obj instanceof Object;
+}
+export function isArray(arr: any): arr is [] {
+	return arr instanceof Array;
+}
+export function isSet(set: any): boolean {
+	return set instanceof Set;
+}
+export function isNonEmptyString(str): str is string {
+	return isString(str) && str.length !== 0;
+}
 
 export function merged() {
 	const args = Array.prototype.slice.call(arguments);

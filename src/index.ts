@@ -2,9 +2,9 @@ export const isString = (str: any): str is string =>
 	typeof str === "string" || str instanceof String;
 export const isNumber = (num: any): num is number =>
 	(typeof num === "number" || num instanceof Number) && num === num;
-export const isObject = (obj: any) =>
+export const isObject = (obj: any): obj is object =>
 	typeof obj === "object" && obj instanceof Object;
-export const isArray = (arr: any) => arr instanceof Array;
+export const isArray = (arr: any): arr is [] => arr instanceof Array;
 export const isSet = (set: any) => set instanceof Set;
 export const isNonEmptyString = (str) => isString(str) && str.length !== 0;
 
@@ -42,10 +42,16 @@ export function cloneDeep(obj: any) {
 	}
 }
 
-export function equalSets(as1, as2) {
-	if (!isObject(as1) || !isObject(as2)) return false;
-	if (!as1[Symbol.iterator] || !as2[Symbol.iterator]) return false;
+export function equalSets(as1: any, as2: any) {
+	if (!isObject(as1)) return false;
+	if (!isObject(as2)) return false;
+	if (!as1[Symbol.iterator] || !(as1[Symbol.iterator] instanceof Function))
+		return false;
+	if (!as2[Symbol.iterator] || !(as2[Symbol.iterator] instanceof Function))
+		return false;
+	// @ts-ignore
 	const set1 = unique([...as1]);
+	// @ts-ignore
 	const set2 = unique([...as2]);
 	return set1.length === set2.length && set1.every((el) => set2.includes(el));
 }

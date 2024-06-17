@@ -1,11 +1,11 @@
-export const isString = (str: any): str is string =>
+export const isString = (str: any): str is String | string =>
 	typeof str === "string" || str instanceof String;
-export const isNumber = (num: any): num is number =>
+export const isNumber = (num: any): num is number | Number =>
 	(typeof num === "number" || num instanceof Number) && num === num;
-export function isObject(obj: any): obj is object {
+export function isObject(obj: any): obj is object|Object {
 	return typeof obj === "object" && obj instanceof Object;
 }
-export function isArray(arr: any): arr is [] {
+export function isArray<T = any>(arr: any): arr is T[] {
 	return arr instanceof Array;
 }
 export function isSet(set: any): boolean {
@@ -14,6 +14,7 @@ export function isSet(set: any): boolean {
 export function isNonEmptyString(str): str is string {
 	return isString(str) && str.length !== 0;
 }
+export function noOp() {}
 
 export function merged() {
 	const args = Array.prototype.slice.call(arguments);

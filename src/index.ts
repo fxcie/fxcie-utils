@@ -2,8 +2,8 @@ export const isString = (str: any): str is String | string =>
 	typeof str === "string" || str instanceof String;
 export const isNumber = (num: any): num is number | Number =>
 	(typeof num === "number" || num instanceof Number) && num === num;
-export function isObject(obj: any): obj is object|Object {
-	return typeof obj === "object" && obj instanceof Object;
+export function isObject(obj: any) {
+	return obj === Object(obj);
 }
 export function isArray<T = any>(arr: any): arr is T[] {
 	return arr instanceof Array;

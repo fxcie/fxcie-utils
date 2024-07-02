@@ -64,7 +64,7 @@ export function equalSets(as1: any, as2: any) {
 	return set1.length === set2.length && set1.every((el) => set2.includes(el));
 }
 
-export function findRecord(arr: [], field: string, value: any) {
+export function findRecord(arr: any[], field: string, value: any) {
 	for (let i = 0; i < arr.length; i++) {
 		if (arr[i][field] == value) return arr[i];
 	}

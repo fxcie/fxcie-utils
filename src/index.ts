@@ -2,7 +2,7 @@ export const isString = (str: any): str is String | string =>
 	typeof str === "string" || str instanceof String;
 export const isNumber = (num: any): num is number | Number =>
 	(typeof num === "number" || num instanceof Number) && num === num;
-export function isObject(obj: any) {
+export function isObject<T extends Object>(obj: any): obj is T {
 	return obj === Object(obj);
 }
 export function isArray<T = any>(arr: any): arr is T[] {
@@ -64,7 +64,11 @@ export function equalSets(as1: any, as2: any) {
 	return set1.length === set2.length && set1.every((el) => set2.includes(el));
 }
 
-export function findRecord(arr: any[], field: string, value: any) {
+export function findRecord<T extends Object, V = any>(
+	arr: T[],
+	field: string,
+	value: V
+) {
 	for (let i = 0; i < arr.length; i++) {
 		if (arr[i][field] == value) return arr[i];
 	}

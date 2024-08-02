@@ -1,6 +1,6 @@
 {
   "name": "@fxcie/utils",
-  "version": "0.0.17",
+  "version": "0.0.19",
   "description": "Francis Carelse's Utilities",
   "main": "lib/index.js",
   "files": [
@@ -32,6 +32,7 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@fxcie/utils": "file:",
     "@types/node": "^20.12.7"
   }
 }

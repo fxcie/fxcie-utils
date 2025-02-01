@@ -8,7 +8,10 @@ export function isObject<T extends Object>(obj: any): obj is T {
 export function isArray<T = any>(arr: any): arr is T[] {
 	return arr instanceof Array;
 }
-export function isSet(set: any): boolean {
+export function isFunction<T extends Function>(func: any): func is T {
+	return func instanceof Function;
+}
+export function isSet<T extends Set<any>>(set: any): set is T {
 	return set instanceof Set;
 }
 export function isNonEmptyString(str): str is string {

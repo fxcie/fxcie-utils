@@ -1,4 +1,4 @@
-export function flattenObject<T extends Object>(obj: T) {
+export function flattenObject<T extends Object>(obj: T, separator: string = '.') {
 	const toReturn: Record<string, any> = {};
 	for (let i in obj) {
 		if (!obj.hasOwnProperty(i)) continue;
@@ -6,7 +6,7 @@ export function flattenObject<T extends Object>(obj: T) {
 			const flatObject = flattenObject(obj[i]);
 			for (var x in flatObject) {
 				if (!flatObject.hasOwnProperty(x)) continue;
-				toReturn[i + "." + x] = flatObject[x];
+				toReturn[i + separator + x] = flatObject[x];
 			}
 		} else {
 			toReturn[i] = obj[i];

@@ -1,3 +1,5 @@
+export * from './extra/index.js'
+
 export const isString = (str: any): str is String | string =>
 	typeof str === "string" || str instanceof String;
 export const isNumber = (num: any): num is number | Number =>

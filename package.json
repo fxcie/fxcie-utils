@@ -1,14 +1,18 @@
 {
   "name": "@fxcie/utils",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "Francis Carelse's Utilities",
   "main": "lib/index.js",
   "files": [
     "lib/*"
   ],
   "scripts": {
-    "build": "bash -c \"npx tsc src/*.ts --outDir lib --lib es2017 --declaration\"",
-    "postbuild": "bash -c \"npx tsc src/*.ts --outDir lib/mjs --lib es2017 --target es2017; exit 0;\"",
+    "build": "bash -c \"rm -rf lib; npm run build:base; npm run build:mjs; exit 0;\"",
+    "build:all": "bash -c \"npm run build:base; npm run build:mjs; npm run build:extra:base; npm run build:extra:mjs; exit 0;\"",
+    "build:base": "bash -c \"npx tsc src/*.ts --outDir lib --lib es2017 --declaration; exit 0;\"",
+    "build:mjs": "bash -c \"npx tsc src/*.ts --outDir lib/mjs --lib es2017 --target es2017; exit 0;\"",
+    "build:extra:base": "bash -c \"npx tsc src/extra/*.ts --outDir lib/extra --lib es2017 --declaration; exit 0;\"",
+    "build:extra:mjs": "bash -c \"npx tsc src/extra/*.ts --outDir lib/mjs/extra --lib es2017 --target es2017; exit 0;\"",
     "pretest": "npm run build",
     "test": "npx jest --verbose false --silent false",
     "prepublish": "npm run build"

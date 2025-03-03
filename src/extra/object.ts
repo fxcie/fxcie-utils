@@ -1,3 +1,26 @@
+import { isObject, isArray } from "../core/index.js";
+
+export function cloneDeep(obj: any) {
+	const values: any[] = [];
+	if (obj == null) return null;
+	return _cloneDeep(obj);
+
+	function _cloneDeep(obj) {
+		if (!isObject(obj)) return obj;
+		if (obj instanceof String) return new String(obj.toString());
+		if (isArray(obj)) return obj.map(_cloneDeep);
+		return Object.entries(obj).reduce((all, [key, value]) => {
+			if (isObject(value)) {
+				if (values.includes(value)) throw new Error("Cyclic object cloning");
+				values.push(value);
+				value = _cloneDeep(value);
+			}
+			all[key] = value;
+			return all;
+		}, {});
+	}
+}
+
 export function flattenObject<T extends Object>(obj: T, separator: string = '.') {
 	const toReturn: Record<string, any> = {};
 	for (let i in obj) {
@@ -30,3 +53,10 @@ export function diffObjects<T1 extends Record<string,any>, T2 extends Record<str
   .map(key=>({diff:'changed', key, was: obj1[key], now: obj2[key]}));
   return {deleted, created, changed};
 }
+
+export function copyFields(source, target, fields){
+  fields.map(field=>{
+    target[field]=source[field];
+  })
+}
+

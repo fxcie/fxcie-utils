@@ -35,3 +35,12 @@ export function randomString(len: number = 8, charSet?: string) {
 	}
 	return randomString;
 }
+
+export function trimInfo(strArr, ...args) {
+  return strArr
+  .reduce((str, next, i) => str + args[i - 1] + next)
+  .split(/\n/)
+  .map(str=>String(str).trim())
+  .filter(str=>str)
+  .join("\n");
+}

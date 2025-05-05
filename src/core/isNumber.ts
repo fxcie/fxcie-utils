@@ -1,2 +1,3 @@
-export const isNumber = (num: any): num is number | Number =>
-	(typeof num === "number" || num instanceof Number) && num === num;
+export function isNumber(num: any): num is number{
+	return (typeof num === "number" || num instanceof Number) && num === num;
+}	

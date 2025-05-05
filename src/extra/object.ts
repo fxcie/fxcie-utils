@@ -1,4 +1,5 @@
 import { isObject, isArray } from "../core/index.js";
+import { sortBy } from "./array.js";
 
 export function cloneDeep(obj: any) {
 	const values: any[] = [];
@@ -57,6 +58,27 @@ export function diffObjects<T1 extends Record<string,any>, T2 extends Record<str
 export function copyFields(source, target, fields){
   fields.map(field=>{
     target[field]=source[field];
+  })
+}
+
+export function ensureHasObject(obj, attrStr){
+  if(!(obj instanceof Object)) return {[attrStr]:{}};
+  if(!(obj[attrStr] instanceof Object)) obj[attrStr] = {};
+  return obj;
+}
+
+export function ensureHasArray(obj, attrStr){
+  if(!(obj instanceof Object)) return {[attrStr]:[]};
+  if(!(obj[attrStr] instanceof Array)) obj[attrStr] = [];
+  return obj;
+}
+
+export function sortObject(obj){
+  const arr = Object.entries(obj).map(([key,value])=>({key,value}));
+  sortBy(arr, 'key');
+  arr.map(({key,value})=>{
+    delete obj[key];
+    obj[key]=value;
   })
 }
 

@@ -1,5 +1,6 @@
 export {
 	substr, trimBack, escapeRegExp, randomString,
+	ucase, lcase, fcase, digest, 
 }from "./string.js";
 export {
 	cloneDeep, flattenObject, diffObjects, copyFields, 

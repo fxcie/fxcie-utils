@@ -1,3 +1,5 @@
+import { str } from "./convert";
+
 export function substr(str: string, start: number, size: number){
 	start = Math.trunc(start);
 	size = Math.trunc(size);
@@ -43,4 +45,25 @@ export function trimInfo(strArr, ...args) {
   .map(str=>String(str).trim())
   .filter(str=>str)
   .join("\n");
+}
+
+export function ucase(s){ return str(s).toUpperCase(); }
+export function lcase(s){ return str(s).toLowerCase(); }
+export function fcase(s){
+  return str(s).split(/\b/)
+  .map(s=>{
+    const [first, ...rest] = s.split('');
+    return `${ucase(first)}${lcase(rest.join(''))}`;
+  })
+  .join('');
+}
+
+export async function digest({ algorithm = "SHA-256", message }){
+  const buffer = new Uint8Array(
+    await crypto.subtle.digest(algorithm, new TextEncoder().encode(message))
+  );
+
+  return buffer // @ts-ignore
+  .map((x) => ("0" + x.toString(16)).slice(-2))
+  .join('');
 }

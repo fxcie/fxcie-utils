@@ -1,6 +1,6 @@
 import { isString } from "../core/isString";
 
-export const FMT = Object.freeze({
+export const FMT = {
   nz: n=>`${num(n) || ''}`,
   int: n=>`${num(n).toFixed(0)}`,
   intNZ: n=>`${num(n)? num(n).toFixed(0): ''}`,
@@ -56,7 +56,7 @@ export const FMT = Object.freeze({
   dp4NZ: n=>num(n)?num(n).toFixed(4):'',
   minToMinSec: n=>minToMinSec(num(n)),
   minToHourMinSec: n=>minToHourMinSec(num(n)),
-});
+};
 
 
 export function num(value): number{

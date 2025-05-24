@@ -21,5 +21,5 @@ export {
 	clamp, numDiff, 
 } from './maths.js'
 export {
-	sleep, 
+	sleep, asyncMap, asyncFilter,
 } from './async.js'

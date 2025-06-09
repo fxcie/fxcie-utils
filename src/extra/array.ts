@@ -124,7 +124,7 @@ export function listField(array, field){
 
 export function intersection(a,b){
 	// @ts-ignore
-  return [...new Set(a).intersection(new Set(b))];
+  return Array.from(new Set(a).intersection(new Set(b)));
 }
 
 export function uniqueBy(RA, key){

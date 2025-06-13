@@ -74,9 +74,9 @@ export function equalSets(as1: any, as2: any) {
 	if (!(as2[Symbol.iterator] instanceof Function))
 		return false;
 	// @ts-ignore
-	const set1 = unique([...as1]);
+	const set1 = unique(Array.from(as1));
 	// @ts-ignore
-	const set2 = unique([...as2]);
+	const set2 = unique(Array.from(as2));
 	return set1.length === set2.length && set1.every((el) => set2.includes(el));
 }
 
@@ -101,9 +101,9 @@ export function sortBy(arr, key: string|Function = DEFSORTFN, order='ASC'){
 
 export function sorted(obj, key: string|Function = DEFSORTFN, order = 'DESC'){
 	if(isArray(obj)){
-		sortBy([...obj], key, order);
+		sortBy(Array.from(obj), key, order);
 	} else if (isObject(obj)){
-		sortBy({...obj}, key, order);
+		sortBy(Object.assign({},obj), key, order);
 	}
 }
 

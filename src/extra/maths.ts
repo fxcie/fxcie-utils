@@ -1,4 +1,4 @@
-import { isNumber } from "../core/isNumber";
+import { isNumber } from "../base/isNumber";
 import { num } from "./convert";
 
 /**

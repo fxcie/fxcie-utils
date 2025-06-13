@@ -61,4 +61,9 @@ test('findRecord return falsy value if not found', () => {
 	expect(!!utils.findRecord([], 'field', 'value')).toBe(false);
 })
 
-
+test('intersection works with sets passed in',()=>{
+	const intersection = utils.intersection(new Set([1,2]), new Set([1,2]));
+	expect(intersection.length).toBe(2);
+	expect(intersection[0]).toBe(1);
+	expect(intersection[1]).toBe(2);
+})

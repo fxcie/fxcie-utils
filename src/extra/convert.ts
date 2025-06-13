@@ -1,4 +1,4 @@
-import { isString } from "../core/isString";
+import { isString } from "../base/isString";
 
 export const FMT = {
   nz: n=>`${num(n) || ''}`,

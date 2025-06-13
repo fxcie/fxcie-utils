@@ -1,4 +1,4 @@
-import { isArray, isFunction, isObject, isString, } from '../core/index.js'
+import { isArray, isFunction, isObject, isString, } from '../base/index.js'
 
 export function unique(arr) {
 	if (!isArray(arr)) throw new TypeError("Arrays only");
@@ -124,7 +124,7 @@ export function listField(array, field){
 
 export function intersection(a,b){
 	// @ts-ignore
-  return [...new Set(a).intersection(new Set(b))];
+  return [...Array.from(new Set(a).intersection(new Set(b)))];
 }
 
 export function uniqueBy(RA, key){

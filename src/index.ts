@@ -2,7 +2,7 @@ export {
 	isString, isNumber, isObject, isArray, 
 	isFunction, isSet, noOp, isNonEmptyString, 
 	isNEString, isNEArray, 
-} from './core/index.js';
+} from './base/index.js';
 export {
 	// from string
 	substr, trimBack, escapeRegExp, randomString,
